@@ -2,3 +2,6 @@
     color: white;
     background-color: black;
 }
+.book{
+    border: 2px solid red;
+}
