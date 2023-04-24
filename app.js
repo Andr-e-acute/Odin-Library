@@ -33,10 +33,11 @@ addBookToLibrary("default", "read", 1, true);
 // display books on site
 
 const bookshelf = document.querySelector("#bookshelf");
+const addCard= bookshelf.querySelector('.add.book')
 
 function displayBooks() {
-  
-  bookshelf.innerText = "";
+  // deletes the add + card.
+  // bookshelf.innerText = "";
 
   library.forEach((bookElement) => {
     const book = document.createElement("div");
@@ -54,7 +55,9 @@ function displayBooks() {
       book.appendChild(prop);
       
     });
-    bookshelf.appendChild(book);
+    //todo insert before  or after add Card 
+    // bookshelf.appendChild(book);
+    bookshelf.insertBefore(book,addCard)
   });
 }
 displayBooks();

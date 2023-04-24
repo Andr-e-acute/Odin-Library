@@ -1,7 +1,128 @@
-:root{
-    color: white;
-    background-color: black;
+:root {
+  /* 
+  --50: #f9f9fb;
+  --100: #f4f2f7;
+  --200: #e3dfea;
+  --300: #d1cbdd;
+  --400: #afa4c4;
+  --500: #8d7daa;
+  --600: #7f7199;
+  --700: #6a5e80;
+  --800: #554b66;
+  --900: #453d53; */
+
+  /* --50: #f9f9f9; 
+    --100: #f4f2f4; 
+    --200: #e3dfe3; 
+    --300: #d1ccd2; 
+    --400: #afa6b0; 
+    --500: #8d808e; 
+    --600: #7f7380; 
+    --700: #6a606b; 
+    --800: #554d55; 
+    --900: #453f46; */
+
+  --050: #fdfdfd;
+  --100: #fbfafb;
+  --200: #f5f4f5;
+  --300: #eeedef;
+  --400: #e2dfe2;
+  --500: #d4ccd6;
+  --600: #c0bcc1;
+  --700: #a09da1;
+  --800: #807d80;
+  --900: #453f46;
 }
-.book{
-    border: 2px solid red;
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
+body {
+  color: var(--900);
+  background-color: var(--500);
+
+  font-family: sans-serif;
+}
+header {
+  padding: 15px;
+  background-color: var(--200);
+  margin-bottom: 15px;
+  box-shadow: 0 1px 20px var(--800);
+  display: flex;
+  justify-content: space-between;
+}
+header h1 {
+  padding: 15px;
+}
+main#bookshelf {
+  padding: 10px;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.book {
+  background-color: var(--300);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 10px 20px var(--800);
+  min-height: 200px;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  word-break: break-all;
+  margin-bottom: 10px;
+}
+.author {
+  font-size: 1.2rem;
+  font-weight: 600;
+  word-break: break-all;
+  margin-bottom: 10px;
+}
+.author::before {
+  content: "by ";
+}
+.pages::after {
+  content: " pages";
+}
+.add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .add {
+    color: var(--800);
+  }
+  .add:hover {
+    color: var(--900);
+    transform: scale(1.1);
+  }
+  .add .circle {
+    border: 6px solid;
+    border-radius: 50%;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 100;
+  }
+  .add.book .circle {
+    width: 90px;
+    height: 90px;
+    font-size: 80px;
+  }
+  .add.circle p {
+    font-size: 1.8rem;
+  }
+  header .add .circle {
+      border: 3px solid;
+      width: 30px;
+      height: 30px;
+      font-size: 30px;
+  }
+  
+
+
