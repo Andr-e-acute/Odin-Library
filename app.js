@@ -9,6 +9,8 @@ const hideFormButtons = document.querySelectorAll(".hide-form");
 const toggleButtonDisplay= document.querySelector('.circleButton.display-form');
 const toggleButtonHide= document.querySelector('.circleButton.hide-form');
 
+const addBookButton=document.querySelector('#add-book')
+
 
 // todo change to class syntax
 function Book(title, author, pages, status) {
@@ -40,7 +42,54 @@ addBookToLibrary(
 );
 addBookToLibrary("default", "unread", 9999, false);
 addBookToLibrary("default", "read", 1, true);
+// display books on site
 
+function displayBooks() {
+
+for (let i = 0; i < library.length; i+=1) {
+  // only add when there is no such book 
+  if(!document.getElementById(`book ${i}`)){
+    const book = document.createElement("div");
+    book.classList.add("book");
+    book.setAttribute('id',`book ${i}`)
+    // loop over each property and create corespondent div's 
+    Object.keys(library[i]).forEach((property) => {
+      const prop = document.createElement("div");
+      prop.classList.add(`${property}`);
+      if (property === "status") {
+        prop.classList.add(`${library[i][property]}`);
+      } else {
+        prop.innerText = library[i][property];
+      }
+      book.appendChild(prop);
+    });
+  
+    bookshelf.insertBefore(book, addCard);
+  }
+ 
+  
+}
+  // library.forEach((bookElement) => {
+  //   const book = document.createElement("div");
+  //   book.classList.add("book");
+
+  //   Object.keys(bookElement).forEach((property) => {
+  //     const prop = document.createElement("div");
+  //     prop.classList.add(`${property}`);
+  //     if (property === "status") {
+  //       prop.classList.add(`${bookElement[property]}`);
+  //     } else {
+  //       prop.innerText = bookElement[property];
+  //     }
+  //     book.appendChild(prop);
+  //   });
+
+  //   bookshelf.insertBefore(book, addCard);
+  // })
+ 
+  ;
+}
+displayBooks();
 // add display form Buttons
 function displayForm() {
   form.classList = "";
@@ -59,31 +108,11 @@ hideFormButtons.forEach((button) => {
 addFormButtons.forEach((button) => {
   button.addEventListener("click", displayForm);
 });
+addBookButton.addEventListener('click',()=>{
+  addBookToLibrary("test","test",5,false)
+  hideForm()
+  displayBooks()
+})
 
-// display books on site
 
-function displayBooks() {
-  // deletes the add + card.
-  // bookshelf.innerText = "";
 
-  library.forEach((bookElement) => {
-    const book = document.createElement("div");
-    book.classList.add("book");
-
-    Object.keys(bookElement).forEach((property) => {
-      const prop = document.createElement("div");
-      prop.classList.add(`${property}`);
-      if (property === "status") {
-        prop.classList.add(`${bookElement[property]}`);
-      } else {
-        prop.innerText = bookElement[property];
-      }
-      book.appendChild(prop);
-    });
-    // todo insert before  or after add Card
-
-    // bookshelf.appendChild(book);
-    bookshelf.insertBefore(book, addCard);
-  });
-}
-displayBooks();

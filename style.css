@@ -96,6 +96,9 @@ main#bookshelf {
   align-items: center;
   justify-content: flex-end;
 }
+.circleButton.book{
+  justify-content: center;
+}
 .circleButton {
   color: var(--800);
 }
