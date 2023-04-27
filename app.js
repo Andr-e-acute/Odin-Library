@@ -6,6 +6,8 @@ const addFormButtons = document.querySelectorAll(".display-form");
 const form = document.querySelector("#form");
 const hideFormButtons = document.querySelectorAll(".hide-form");
 
+
+
 // todo change to class syntax
 function Book(title, author, pages, status) {
   this.title = title;
@@ -39,12 +41,11 @@ addBookToLibrary("default", "read", 1, true);
 
 // add display form Buttons
 function displayForm() {
-  console.log(this);
-  // change the + to x in the small add a book?
   form.classList = "";
 }
 function hideForm() {
   form.classList = "display-none";
+ 
 }
 hideFormButtons.forEach((button) => {
   button.addEventListener("click", hideForm);
