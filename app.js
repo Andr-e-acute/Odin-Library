@@ -5,9 +5,10 @@ const addCard = bookshelf.querySelector(".display-form.bookCard");
 const addFormButtons = document.querySelectorAll(".display-form");
 const form = document.querySelector("#form");
 const hideFormButtons = document.querySelectorAll(".hide-form");
-// const displayedBooks = document.getElementsByClassName("book");
 
-const toggleButtonDisplay = document.querySelector(".circleButton.display-form");
+const toggleButtonDisplay = document.querySelector(
+  ".circleButton.display-form"
+);
 const toggleButtonHide = document.querySelector(".circleButton.hide-form");
 const addBookButton = document.querySelector("#add-book");
 
@@ -29,12 +30,16 @@ function addBookToLibrary(title, author, pages, status) {
   const newBook = new Book(title, author, pages, status);
   library.push(newBook);
 }
-function deleteBook(parentElement)
-{
- const index=parentElement.id.slice(-1)
- library.splice(index,1)
- console.log(library)
-parentElement.remove()
+function deleteBook(parentElement) {
+  const index = parentElement.id.slice(-1);
+  library.splice(index, 1);
+  parentElement.remove();
+}
+function toggleStatus(e) {
+  const index = e.parentElement.parentElement.id.slice(-1);
+  library[index].status = !library[index].status;
+  e.classList = `read-${library[index].status}`;
+  e.innerText = library[index].status ? "read" : " not read";
 }
 
 //  sample books
@@ -73,11 +78,14 @@ function displayBooks() {
           deleteButton.setAttribute("type", "button");
           deleteButton.classList = "delete-Card";
           deleteButton.innerText = "delete";
-          deleteButton.addEventListener('click',(e)=>{
-            deleteBook(e.target.parentElement.parentElement)
-           })
+          deleteButton.addEventListener("click", (e) => {
+            deleteBook(e.target.parentElement.parentElement);
+          });
           statusButtons.appendChild(statusButton);
           statusButtons.appendChild(deleteButton);
+          statusButton.addEventListener("click", (e) => {
+            toggleStatus(e.target);
+          });
           book.appendChild(statusButtons);
         } else {
           const prop = document.createElement("div");
@@ -114,7 +122,7 @@ addBookButton.addEventListener("click", () => {
     document.getElementById("title").value,
     document.getElementById("author").value,
     document.getElementById("pages").value,
-    document.getElementById("status").value
+    document.getElementById("status").checked
   );
   hideForm();
   displayBooks();
