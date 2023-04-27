@@ -6,11 +6,12 @@ const addFormButtons = document.querySelectorAll(".display-form");
 const form = document.querySelector("#form");
 const hideFormButtons = document.querySelectorAll(".hide-form");
 
-const toggleButtonDisplay= document.querySelector('.circleButton.display-form');
-const toggleButtonHide= document.querySelector('.circleButton.hide-form');
+const toggleButtonDisplay = document.querySelector(
+  ".circleButton.display-form"
+);
+const toggleButtonHide = document.querySelector(".circleButton.hide-form");
 
-const addBookButton=document.querySelector('#add-book')
-
+const addBookButton = document.querySelector("#add-book");
 
 // todo change to class syntax
 function Book(title, author, pages, status) {
@@ -45,62 +46,40 @@ addBookToLibrary("default", "read", 1, true);
 // display books on site
 
 function displayBooks() {
+  for (let i = 0; i < library.length; i += 1) {
+    // only add when there is no such book
+    if (!document.getElementById(`book ${i}`)) {
+      const book = document.createElement("div");
+      book.classList.add("book");
+      book.setAttribute("id", `book ${i}`);
+      // loop over each property and create corespondent div's
+      Object.keys(library[i]).forEach((property) => {
+        const prop = document.createElement("div");
+        prop.classList.add(`${property}`);
+        // status is special
+        if (property === "status") {
+          prop.classList.add(`${library[i][property]}`);
+        } else {
+          prop.innerText = library[i][property];
+        }
+        book.appendChild(prop);
+      });
 
-for (let i = 0; i < library.length; i+=1) {
-  // only add when there is no such book 
-  if(!document.getElementById(`book ${i}`)){
-    const book = document.createElement("div");
-    book.classList.add("book");
-    book.setAttribute('id',`book ${i}`)
-    // loop over each property and create corespondent div's 
-    Object.keys(library[i]).forEach((property) => {
-      const prop = document.createElement("div");
-      prop.classList.add(`${property}`);
-      if (property === "status") {
-        prop.classList.add(`${library[i][property]}`);
-      } else {
-        prop.innerText = library[i][property];
-      }
-      book.appendChild(prop);
-    });
-  
-    bookshelf.insertBefore(book, addCard);
+      bookshelf.insertBefore(book, addCard);
+    }
   }
- 
-  
-}
-  // library.forEach((bookElement) => {
-  //   const book = document.createElement("div");
-  //   book.classList.add("book");
-
-  //   Object.keys(bookElement).forEach((property) => {
-  //     const prop = document.createElement("div");
-  //     prop.classList.add(`${property}`);
-  //     if (property === "status") {
-  //       prop.classList.add(`${bookElement[property]}`);
-  //     } else {
-  //       prop.innerText = bookElement[property];
-  //     }
-  //     book.appendChild(prop);
-  //   });
-
-  //   bookshelf.insertBefore(book, addCard);
-  // })
- 
-  ;
 }
 displayBooks();
 // add display form Buttons
 function displayForm() {
   form.classList = "";
-  toggleButtonDisplay.style.display='none';
-  toggleButtonHide.style.display='';
+  toggleButtonDisplay.style.display = "none";
+  toggleButtonHide.style.display = "";
 }
 function hideForm() {
   form.classList = "display-none";
-  toggleButtonDisplay.style.display='';
-  toggleButtonHide.style.display='none';
-
+  toggleButtonDisplay.style.display = "";
+  toggleButtonHide.style.display = "none";
 }
 hideFormButtons.forEach((button) => {
   button.addEventListener("click", hideForm);
@@ -108,11 +87,11 @@ hideFormButtons.forEach((button) => {
 addFormButtons.forEach((button) => {
   button.addEventListener("click", displayForm);
 });
-addBookButton.addEventListener('click',()=>{
-  addBookToLibrary("test","test",5,false)
-  hideForm()
-  displayBooks()
-})
-
-
-
+addBookButton.addEventListener("click", () => {
+  addBookToLibrary(document.getElementById('title').value,
+  document.getElementById('author').value,
+  document.getElementById('pages').value, 
+  document.getElementById('status').value);
+  hideForm();
+  displayBooks();
+});
