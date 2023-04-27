@@ -1,16 +1,14 @@
 const library = [];
 const bookshelf = document.querySelector("#bookshelf");
-const addCard = bookshelf.querySelector(".display-form.book");
+const addCard = bookshelf.querySelector(".display-form.bookCard");
 
 const addFormButtons = document.querySelectorAll(".display-form");
 const form = document.querySelector("#form");
 const hideFormButtons = document.querySelectorAll(".hide-form");
+// const displayedBooks = document.getElementsByClassName("book");
 
-const toggleButtonDisplay = document.querySelector(
-  ".circleButton.display-form"
-);
+const toggleButtonDisplay = document.querySelector(".circleButton.display-form");
 const toggleButtonHide = document.querySelector(".circleButton.hide-form");
-
 const addBookButton = document.querySelector("#add-book");
 
 // todo change to class syntax
@@ -31,6 +29,13 @@ function addBookToLibrary(title, author, pages, status) {
   const newBook = new Book(title, author, pages, status);
   library.push(newBook);
 }
+function deleteBook(parentElement)
+{
+ const index=parentElement.id.slice(-1)
+ library.splice(index,1)
+ console.log(library)
+parentElement.remove()
+}
 
 //  sample books
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
@@ -48,21 +53,38 @@ addBookToLibrary("default", "read", 1, true);
 function displayBooks() {
   for (let i = 0; i < library.length; i += 1) {
     // only add when there is no such book
-    if (!document.getElementById(`book ${i}`)) {
+    if (!document.getElementById(`bookId${i}`)) {
       const book = document.createElement("div");
-      book.classList.add("book");
-      book.setAttribute("id", `book ${i}`);
+      book.classList = "book bookCard";
+      book.setAttribute("id", `bookId${i}`);
       // loop over each property and create corespondent div's
       Object.keys(library[i]).forEach((property) => {
-        const prop = document.createElement("div");
-        prop.classList.add(`${property}`);
         // status is special
         if (property === "status") {
-          prop.classList.add(`${library[i][property]}`);
+          const statusButtons = document.createElement("div");
+          statusButtons.classList = "statusButtons";
+
+          const statusButton = document.createElement("button");
+          statusButton.setAttribute("type", "button");
+          statusButton.classList = `read-${library[i][property]}`;
+          statusButton.innerText = library[i][property] ? "read" : " not read";
+
+          const deleteButton = document.createElement("button");
+          deleteButton.setAttribute("type", "button");
+          deleteButton.classList = "delete-Card";
+          deleteButton.innerText = "delete";
+          deleteButton.addEventListener('click',(e)=>{
+            deleteBook(e.target.parentElement.parentElement)
+           })
+          statusButtons.appendChild(statusButton);
+          statusButtons.appendChild(deleteButton);
+          book.appendChild(statusButtons);
         } else {
+          const prop = document.createElement("div");
+          prop.classList.add(`${property}`);
           prop.innerText = library[i][property];
+          book.appendChild(prop);
         }
-        book.appendChild(prop);
       });
 
       bookshelf.insertBefore(book, addCard);
@@ -88,10 +110,12 @@ addFormButtons.forEach((button) => {
   button.addEventListener("click", displayForm);
 });
 addBookButton.addEventListener("click", () => {
-  addBookToLibrary(document.getElementById('title').value,
-  document.getElementById('author').value,
-  document.getElementById('pages').value, 
-  document.getElementById('status').value);
+  addBookToLibrary(
+    document.getElementById("title").value,
+    document.getElementById("author").value,
+    document.getElementById("pages").value,
+    document.getElementById("status").value
+  );
   hideForm();
   displayBooks();
 });

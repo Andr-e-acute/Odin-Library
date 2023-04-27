@@ -55,6 +55,10 @@ grid-template-columns: 8fr 100px;
 header h1 {
   padding: 15px;
 }
+button{
+  border: none;
+  cursor: pointer;
+}
 /* book card layout */
 main#bookshelf {
   padding: 10px;
@@ -62,19 +66,48 @@ main#bookshelf {
   gap: 30px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
-.book {
+.bookCard {
   background-color: var(--300);
   border-radius: 10px;
-  padding: 20px;
+ 
   box-shadow: 0 10px 20px var(--800);
   min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.bookCard:hover{
+  box-shadow: 0 10px 30px var(--50);
+}
+.bookCard div{
+  margin:0px 20px;
+}
+div.statusButtons{
+  margin:auto 0 0 0 ;
+ background-color: gray;
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ height: 50px;
+}
+.statusButtons .read-true{
+  background-color: var(--400);
+}
+.statusButtons .read-false{
+  color: var(--050);
+  background-color: var(--600);
+}
+.statusButtons .delete-Card{
+  background-color: rgb(223, 177, 177);
+}
+.statusButtons .delete-Card:hover{
+  background-color: red;
 }
 
 .title {
   font-size: 1.8rem;
   font-weight: 700;
   word-break: break-all;
-  margin-bottom: 10px;
+  
 }
 .author {
   font-size: 1.2rem;
@@ -96,15 +129,16 @@ main#bookshelf {
   align-items: center;
   justify-content: flex-end;
 }
-.circleButton.book{
+.circleButton.bookCard{
   justify-content: center;
 }
 .circleButton {
+  cursor: pointer;
   color: var(--800);
 }
 .circleButton:hover {
   color: var(--900);
-  transform: scale(1.1);
+ 
 }
 .circle {
   border: 6px solid;
@@ -116,7 +150,7 @@ main#bookshelf {
   align-items: center;
   font-weight: 100;
 }
-.circleButton.book .circle {
+.circleButton.bookCard .circle {
   width: 90px;
   height: 90px;
   font-size: 80px;
@@ -207,7 +241,7 @@ header .circleButton .circle {
  
 }
 .buttons button{
-  border: none;
+ 
   font-size: 1.3rem;
   color: var(--050);
   font-weight: 900;
