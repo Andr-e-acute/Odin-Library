@@ -89,16 +89,16 @@ main#bookshelf {
 }
 
 /* the add book button */
-.add {
+.display-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
-.add {
+.display-form {
   color: var(--800);
 }
-.add:hover {
+.display-form:hover {
   color: var(--900);
   transform: scale(1.1);
 }
@@ -112,15 +112,15 @@ main#bookshelf {
   align-items: center;
   font-weight: 100;
 }
-.add.book .circle {
+.display-form.book .circle {
   width: 90px;
   height: 90px;
   font-size: 80px;
 }
-.add.circle p {
+.display-form.circle p {
   font-size: 1.8rem;
 }
-header .add .circle {
+header .display-form .circle {
   border: 3px solid;
   width: 30px;
   height: 30px;

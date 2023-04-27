@@ -11,7 +11,7 @@
   <body>
     <header>
       <h1>Odin Library Project</h1>
-      <div class="add">
+      <div class="display-form">
         <p>add a book</p>
         <div class="circle">
           <div>+</div>
@@ -21,7 +21,7 @@
     <section id="form" class="display-none">
       <div class="form-container">
         <div class="form-header">
-          <div>x</div>
+          <div class="hide-form">x</div>
           <h1 class="form-header">Add a new Book</h1>
         </div>
 
@@ -42,13 +42,13 @@
         </form>
 
         <div class="buttons">
-          <button type="button" id="cancel-input">Cancel</button>
+          <button type="button" id="cancel-input" class="hide-form">Cancel</button>
           <button type="button" id="add-book">Add</button>
         </div>
       </div>
     </section>
     <main id="bookshelf">
-      <div class="book add">
+      <div class="book display-form">
         <div class="circle">
           <div>+</div>
         </div>

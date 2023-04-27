@@ -1,10 +1,10 @@
 const library = [];
 const bookshelf = document.querySelector("#bookshelf");
-const addCard= bookshelf.querySelector('.add.book');
+const addCard = bookshelf.querySelector(".display-form.book");
 
-const addButtons = document.querySelectorAll('.add')
-const form =document.querySelector('#form')
-
+const addFormButtons = document.querySelectorAll(".display-form");
+const form = document.querySelector("#form");
+const hideFormButtons = document.querySelectorAll(".hide-form");
 
 // todo change to class syntax
 function Book(title, author, pages, status) {
@@ -25,7 +25,6 @@ function addBookToLibrary(title, author, pages, status) {
   library.push(newBook);
 }
 
-
 //  sample books
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
 addBookToLibrary("short", "s", 1, true);
@@ -39,14 +38,22 @@ addBookToLibrary("default", "unread", 9999, false);
 addBookToLibrary("default", "read", 1, true);
 
 // add display form Buttons
-function displayForm(){
-  console.log(this)
-  form.classList=''
+function displayForm() {
+  console.log(this);
+  // change the + to x in the small add a book?
+  form.classList = "";
 }
-addButtons.forEach((add)=>{add.addEventListener('click',displayForm)})
+function hideForm() {
+  form.classList = "display-none";
+}
+hideFormButtons.forEach((button) => {
+  button.addEventListener("click", hideForm);
+});
+addFormButtons.forEach((button) => {
+  button.addEventListener("click", displayForm);
+});
+
 // display books on site
-
-
 
 function displayBooks() {
   // deletes the add + card.
@@ -55,23 +62,21 @@ function displayBooks() {
   library.forEach((bookElement) => {
     const book = document.createElement("div");
     book.classList.add("book");
-    
+
     Object.keys(bookElement).forEach((property) => {
       const prop = document.createElement("div");
       prop.classList.add(`${property}`);
-      if(property==='status'){
-        prop.classList.add(`${bookElement[property]}`)
-      }
-      else{
+      if (property === "status") {
+        prop.classList.add(`${bookElement[property]}`);
+      } else {
         prop.innerText = bookElement[property];
       }
       book.appendChild(prop);
-      
     });
-    // todo insert before  or after add Card  
+    // todo insert before  or after add Card
 
     // bookshelf.appendChild(book);
-    bookshelf.insertBefore(book,addCard)
+    bookshelf.insertBefore(book, addCard);
   });
 }
 displayBooks();
