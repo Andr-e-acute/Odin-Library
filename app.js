@@ -6,6 +6,8 @@ const addFormButtons = document.querySelectorAll(".display-form");
 const form = document.querySelector("#form");
 const hideFormButtons = document.querySelectorAll(".hide-form");
 
+const toggleButtonDisplay= document.querySelector('.circleButton.display-form');
+const toggleButtonHide= document.querySelector('.circleButton.hide-form');
 
 
 // todo change to class syntax
@@ -42,10 +44,14 @@ addBookToLibrary("default", "read", 1, true);
 // add display form Buttons
 function displayForm() {
   form.classList = "";
+  toggleButtonDisplay.style.display='none';
+  toggleButtonHide.style.display='';
 }
 function hideForm() {
   form.classList = "display-none";
- 
+  toggleButtonDisplay.style.display='';
+  toggleButtonHide.style.display='none';
+
 }
 hideFormButtons.forEach((button) => {
   button.addEventListener("click", hideForm);
