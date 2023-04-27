@@ -14,23 +14,45 @@
       <div class="add">
         <p>add a book</p>
         <div class="circle">
-         <div>+</div>
-         
-     </div>
+          <div>+</div>
+        </div>
+      </div>
     </header>
-    <section id="form">
+    <section id="form" class="display-none">
+      <div class="form-container">
+        <div class="form-header">
+          <div>x</div>
+          <h1 class="form-header">Add a new Book</h1>
+        </div>
+
         <form>
-            <label for="title">title</label>
-            <input type="text" name="title" id="title" required>
+          <label for="Book name">title</label>
+          <input type="text" name="title" id="title" />
+
+          <label for="author">author</label>
+          <input type="text" name="author" id="author" />
+
+          <label for="pages">number of pages</label>
+          <input type="number" name="pages" id="pages" />
+
+          <div class="checkbox">
+            <input type="checkbox" name="read" id="read" />
+            <label for="read"> I have read this book!</label>
+          </div>
         </form>
+
+        <div class="buttons">
+          <button type="button" id="cancel-input">Cancel</button>
+          <button type="button" id="add-book">Add</button>
+        </div>
+      </div>
     </section>
     <main id="bookshelf">
-        <div class="book add">
-           <div class="circle">
-            <div>+</div>
+      <div class="book add">
+        <div class="circle">
+          <div>+</div>
         </div>
-           
-        </div>
+      </div>
     </main>
     <!-- <footer>
         <a href="https://github.com/Andr-e-acute">André</a>
