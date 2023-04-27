@@ -1,30 +1,21 @@
 const library = [];
 const bookshelf = document.querySelector("#bookshelf");
 const addCard = bookshelf.querySelector(".display-form.bookCard");
-
 const addFormButtons = document.querySelectorAll(".display-form");
 const form = document.querySelector("#form");
 const hideFormButtons = document.querySelectorAll(".hide-form");
-
 const toggleButtonDisplay = document.querySelector(
   ".circleButton.display-form"
 );
 const toggleButtonHide = document.querySelector(".circleButton.hide-form");
 const addBookButton = document.querySelector("#add-book");
 
-// todo change to class syntax
 function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.status = status;
-  // this.info = function info () {
-  //   return `${title} by  ${author},${pages} pages, ${
-  //     read ? "already read" : "not read yet"
-  //   }`;
-  // };
 }
-// const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 
 function addBookToLibrary(title, author, pages, status) {
   const newBook = new Book(title, author, pages, status);
@@ -42,17 +33,6 @@ function toggleStatus(e) {
   e.innerText = library[index].status ? "read" : " not read";
 }
 
-//  sample books
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
-addBookToLibrary("short", "s", 1, true);
-addBookToLibrary(
-  "Long book title 1234567891234567890",
-  "Long book author 1234567891234567890",
-  3412785098578,
-  false
-);
-addBookToLibrary("default", "unread", 9999, false);
-addBookToLibrary("default", "read", 1, true);
 // display books on site
 
 function displayBooks() {
@@ -64,7 +44,7 @@ function displayBooks() {
       book.setAttribute("id", `bookId${i}`);
       // loop over each property and create corespondent div's
       Object.keys(library[i]).forEach((property) => {
-        // status is special
+        // status is special refractor?
         if (property === "status") {
           const statusButtons = document.createElement("div");
           statusButtons.classList = "statusButtons";
@@ -87,7 +67,9 @@ function displayBooks() {
             toggleStatus(e.target);
           });
           book.appendChild(statusButtons);
-        } else {
+        }
+        // create title author pages
+        else {
           const prop = document.createElement("div");
           prop.classList.add(`${property}`);
           prop.innerText = library[i][property];
@@ -99,7 +81,7 @@ function displayBooks() {
     }
   }
 }
-displayBooks();
+
 // add display form Buttons
 function displayForm() {
   form.classList = "";
@@ -111,6 +93,21 @@ function hideForm() {
   toggleButtonDisplay.style.display = "";
   toggleButtonHide.style.display = "none";
 }
+
+//  sample books
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
+addBookToLibrary("short", "s", 1, true);
+addBookToLibrary(
+  "Long book title 1234567891234567890",
+  "Long book author 1234567891234567890",
+  3412785098578,
+  false
+);
+addBookToLibrary("default", "unread", 9999, false);
+addBookToLibrary("default", "read", 1, true);
+displayBooks();
+
+// eventListeners
 hideFormButtons.forEach((button) => {
   button.addEventListener("click", hideForm);
 });
