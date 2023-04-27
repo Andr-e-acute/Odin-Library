@@ -1,4 +1,10 @@
 const library = [];
+const bookshelf = document.querySelector("#bookshelf");
+const addCard= bookshelf.querySelector('.add.book');
+
+const addButtons = document.querySelectorAll('.add')
+const form =document.querySelector('#form')
+
 
 // todo change to class syntax
 function Book(title, author, pages, status) {
@@ -18,6 +24,8 @@ function addBookToLibrary(title, author, pages, status) {
   const newBook = new Book(title, author, pages, status);
   library.push(newBook);
 }
+
+
 //  sample books
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, false);
 addBookToLibrary("short", "s", 1, true);
@@ -30,10 +38,15 @@ addBookToLibrary(
 addBookToLibrary("default", "unread", 9999, false);
 addBookToLibrary("default", "read", 1, true);
 
+// add display form Buttons
+function displayForm(){
+  console.log(this)
+  form.classList=''
+}
+addButtons.forEach((add)=>{add.addEventListener('click',displayForm)})
 // display books on site
 
-const bookshelf = document.querySelector("#bookshelf");
-const addCard= bookshelf.querySelector('.add.book')
+
 
 function displayBooks() {
   // deletes the add + card.
