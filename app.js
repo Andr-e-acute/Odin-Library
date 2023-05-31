@@ -10,11 +10,13 @@ const toggleButtonDisplay = document.querySelector(
 const toggleButtonHide = document.querySelector(".circleButton.hide-form");
 const addBookButton = document.querySelector("#add-book");
 
-function Book(title, author, pages, status) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
+class Book {
+  constructor(title = "", author= '', pages='', status=false) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+  }
 }
 
 function addBookToLibrary(title, author, pages, status) {
