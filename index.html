@@ -17,7 +17,7 @@
           <div class="toggle-button">+</div>
         </div>
       </div>
-      <div class="circleButton hide-form" style="display: none;">
+      <div class="circleButton hide-form" style="display: none">
         <p></p>
         <div class="circle">
           <div class="toggle-button">x</div>
@@ -31,25 +31,32 @@
           <h1 class="form-header">Add a new Book</h1>
         </div>
 
-        <form>
-          <label for="Book name">title</label>
-          <input type="text" name="title" id="title" />
-
-          <label for="author">author</label>
-          <input type="text" name="author" id="author" />
-
-          <label for="pages">number of pages</label>
-          <input type="number" name="pages" id="pages" />
-
-          <div class="checkbox">
+        <form id="addBook">
+          <label for="Book name">
+            title
+            <input type="text" name="title" id="title" required />
+          </label>
+          <label for="author">
+            author
+            <input type="text" name="author" id="author" required />
+          </label>
+          <label for="pages">
+            number of pages
+            <input type="number" name="pages" id="pages" required />
+          </label>
+          <label for="status" class="checkbox">
             <input type="checkbox" name="read" id="status" />
-            <label for="status"> I have read this book!</label>
-          </div>
+            I have read this book!
+          </label>
         </form>
-
+        <div class="error"></div>
         <div class="buttons">
-          <button type="button" id="cancel-input" class="hide-form">Cancel</button>
-          <button type="button" id="add-book">Add</button>
+          <button type="button" id="cancel-input" class="hide-form">
+            Cancel
+          </button>
+          <button type="submit" form="addBook" id="add-book" class="grayed">
+            Add
+          </button>
         </div>
       </div>
     </section>
@@ -60,6 +67,5 @@
         </div>
       </div>
     </main>
-  
   </body>
 </html>

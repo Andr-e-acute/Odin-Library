@@ -11,7 +11,7 @@ const toggleButtonHide = document.querySelector(".circleButton.hide-form");
 const addBookButton = document.querySelector("#add-book");
 
 class Book {
-  constructor(title = "", author= '', pages='', status=false) {
+  constructor(title = "", author = "", pages = "", status = false) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -33,6 +33,9 @@ function toggleStatus(e) {
   library[index].status = !library[index].status;
   e.classList = `read-${library[index].status}`;
   e.innerText = library[index].status ? "read" : " not read";
+}
+function validateNewBook() {
+  console.log("validateNewBook called");
 }
 
 // display books on site
@@ -116,13 +119,29 @@ hideFormButtons.forEach((button) => {
 addFormButtons.forEach((button) => {
   button.addEventListener("click", displayForm);
 });
-addBookButton.addEventListener("click", () => {
-  addBookToLibrary(
-    document.getElementById("title").value,
-    document.getElementById("author").value,
-    document.getElementById("pages").value,
-    document.getElementById("status").checked
-  );
-  hideForm();
-  displayBooks();
+addBookButton.addEventListener("click", (e) => {
+  const actForm = e.target.closest(".form-container").querySelector("form");
+  const inputElements = [...actForm.querySelectorAll("input")];
+  const valid = inputElements.every((input) => input.validity.valid);
+
+  if (valid) {
+    addBookToLibrary(
+      document.getElementById("title").value,
+      document.getElementById("author").value,
+      document.getElementById("pages").value,
+      document.getElementById("status").checked
+    );
+    hideForm();
+    displayBooks();
+  } else {
+    const errorText = "Please fill all the fields";
+    const parentContainer = e.target.closest("div");
+    console.log(parentContainer);
+    const error = document.querySelector(".error");
+    error.classList.add("active");
+    error.textContent = errorText;
+    parentContainer
+      .closest(".form-container")
+      .insertBefore(error, parentContainer);
+  }
 });
